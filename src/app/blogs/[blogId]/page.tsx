@@ -1,6 +1,4 @@
 import { getDetail,getBlogs } from "@/../libs/client";
-import Link from "next/link"
-
 export async function generateStaticParams(){
   const { contents } = await getBlogs();
 
@@ -21,8 +19,16 @@ export default async function StaticDetailPage({
 
   return(
     <>
-        <p>{blog.title}</p>
-        <p>{blog.body}</p>
+      <div className="h-screen pt-5">
+        <div className="content">
+          <h1>{blog.title}</h1>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: `${blog.body}`,
+            }}
+          />
+        </div>
+      </div>
     </>
   )
 }
